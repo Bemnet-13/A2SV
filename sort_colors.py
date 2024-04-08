@@ -3,18 +3,15 @@ class Solution:
         """
         Do not return anything, modify nums in-place instead.
         """
-        color_count = {}
-        for num in nums:
-            if num not in color_count:
-                color_count[num] = 1
-            else:
-                color_count[num] += 1
-        
-        i = 0
-        color = 0
-        while i < len(nums):
-            while color_count.get(color) != None and color_count.get(color) > 0:
-                nums[i] = color
-                i += 1
-                color_count[color] -= 1
-            color += 1
+        l = 0
+        r = len(nums) - 1
+
+        while l < r:
+            if nums[l] > nums[r]:
+                nums[l], nums[r] = nums[r], nums[l]
+            
+            if nums[l] == 0:
+                l += 1
+            if nums[r] == 2:
+                r -= 1
+            
