@@ -45,8 +45,3 @@ class Solution:
             if window_count[key] < target_count[key]:
                 return False
         return True
-
-
-trial = Solution()
-o = trial.minWindow(s = "a", t = "b")    
-print(o)        
