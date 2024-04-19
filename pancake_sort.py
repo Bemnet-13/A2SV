@@ -3,7 +3,7 @@ class Solution:
         # arr is permutation of 1,..., len(arr)
         # Find the largest element in the array
         # Flip it to make it at index 0
-        # Flip the entire pancake upto the number to make it ata teh correct position
+        # Flip the entire pancake upto the number to make it at the correct position
         def flip(lst, r):
             l = 0
             while l < r:
