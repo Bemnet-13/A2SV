@@ -1,18 +1,17 @@
 class Solution:
-    def isValid(self, s):
+    def isValid(self, s: str) -> bool:
+        dictionary = {'(':')', '{':'}', '[' : ']'}
         stack = []
-        dictionary = {'(':')', '{':'}', '[':']'}
 
-        for i in s:
-            if i in s.keys():
-                stack.append(i)
-
+        for chr in s:
+            if len(stack) == 0:
+                stack.append(chr)
+            elif chr not in dictionary and dictionary.get(stack[-1]) == chr:
+                stack.pop()
             else:
-                if not stack:
-                    return False
-                else:
-                    val = stack.pop()
-                    if i != dictionary[val]:
-                        return False
+                stack.append(chr)
+            
         
-        return stack == []
+        if len(stack) == 0:
+            return True
+        return False
