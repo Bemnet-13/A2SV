@@ -7,16 +7,29 @@ class MyStack:
 
     def push(self, x: int) -> None:
         self.front.append(x)
-        self.back.appendleft(x)
 
     def pop(self) -> int:
-        self.back.popleft()
-        self.front.pop()
+        while len(self.front) > 1:
+            val = self.front.popleft()
+            self.back.append(val)
+        popped_item = self.front[-1]
+
+        self.front, self.back = self.back, self.front
+        self.back = deque()
+        return popped_item
 
     def top(self) -> int:
-        if self.back:
-            return self.back[0]
-        
+        while len(self.front) >= 0:
+            val = self.front.popleft()
+            self.back.append(val)
+            if len(self.front) == 0:
+                last_item = val
+
+
+        self.front, self.back = self.back, self.front
+        self.back = deque()
+        return last_item
+    
     def empty(self) -> bool:
         if len(self.front) == 0:
             return True
