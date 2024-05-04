@@ -3,15 +3,15 @@ class Solution:
         # Initialize a pointer l to be 0
 
         l = 0
-
-        while l < len(numbers):
-            num1 = numbers[l]
-            num2 = target - num1
-            r = l + 1
-            while r < len(numbers):
-                if numbers[r] == num2:
-                    return [l + 1, r + 1]
-                elif numbers[r] > num2:
-                    break
-            l += 1
+        r = len(numbers) - 1
+        not_found = True
+        while not_found:
+            two_sum = numbers[l] + numbers[r]
+            if two_sum == target:
+                not_found = False
+            elif two_sum > target:
+                r -= 1
+            else:
+                l += 1
+        return [l + 1, r + 1]
         
