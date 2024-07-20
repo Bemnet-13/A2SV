@@ -1,17 +1,25 @@
 class Solution:
     def totalFruit(self, fruits) -> int:
-        basket = {}
-        max_count = 0
-        left = right = 0
+        max_fruits = start = end = 0
+        baskets = {}
 
-        while right < len(fruits):
-            if len(basket) <= 2:
-                basket[fruits[right]] = 1
-                right += 1
-                max_count = max(max_count, right - left)
-        
-        return max_count
-    
-trial =Solution()
-o = trial.totalFruit()
-print(o)
+        if len(fruits) <= 2:
+            return len(fruits)
+
+        while end < len(fruits):
+            fruit = fruits[end]
+            if len(baskets) == 2 and fruit not in baskets:
+                baskets[fruits[start]] -= 1
+                if baskets[fruits[start]] == 0:
+                    del baskets[fruits[start]]
+                start += 1
+            elif baskets.get(fruit, 0) > 0:
+                baskets[fruit] += 1
+                end += 1
+            elif baskets.get(fruit, 0) == 0:
+                baskets[fruit] = 1
+                end += 1
+            
+            max_fruits = max(max_fruits, end - start)
+
+        return max_fruits
