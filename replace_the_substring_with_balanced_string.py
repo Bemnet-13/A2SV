@@ -1,3 +1,5 @@
+from collections import Counter
+import math
 class Solution:
     def balancedString(self, s: str) -> int:
         total_count = Counter(s)
@@ -37,4 +39,6 @@ class Solution:
                     return False
             return True
 
+c = Counter('AAABFBDFBDASA')
+print(c.most_common()[0][0])
         
