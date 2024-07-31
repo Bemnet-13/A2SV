@@ -5,12 +5,13 @@ class ListNode:
         self.next = next
 class Solution:
     def reverseList(self, head):
-        curr = head
-        prevNode = None
-        while curr:
-            data = curr.val
-            newNode = ListNode(data)
-            newNode.next = prevNode
-            prevNode = newNode
-            curr = curr.next
-        return prevNode
+        return self.listReversal(head, None)
+    def listReversal(self, head, prev):
+        if head == None:
+            return prev
+        first = head
+        second = head.next
+        
+        # Swapping pointers
+        first.next = prev
+        return self.listReversal(second, first)
