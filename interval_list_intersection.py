@@ -1,5 +1,5 @@
 class Solution:
-    def intervalIntersection(self, firstList: List[List[int]], secondList: List[List[int]]) -> List[List[int]]:
+    def intervalIntersection(self, firstList, secondList):
         n, m = len(firstList), len(secondList)
         if n == 0 or m == 0:
             return []
@@ -22,4 +22,3 @@ class Solution:
                 i += 1
         
         return answer
-            
