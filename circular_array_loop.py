@@ -1,35 +1,23 @@
 class Solution:
     def circularArrayLoop(self, nums) -> bool:
-        l = 0
-        size = len(nums)
-        nums = 2 * nums 
-
-        while l < size:
-            p = l
-            count = 0
-            while True:
-                i = nums[p]
-                r = p + nums[p]
-                if r < 0:
-                    r += size
-
-                if i * (nums[r % size]) < 0:
-                    l += 1
+        n = len(nums)
+        for i in range(n):
+            starting = i
+            curr = starting
+            k = 0
+            seen = set([starting]) 
+            while k < n:
+                next_ = (curr + nums[curr]) % n
+                if not self.sameSign(nums[starting], nums[next_]):
                     break
-                else:
-                    count += 1
-                    if r == l + size and count > 1:
-                        return True
-                    elif r == l + size and count == 1:
-                        l += 1
-                        break
-                    elif r > l + size:
-                        l += 1
-                        break
-                    else:
-                        p = r
+                k += 1
+                curr = next_
+                seen.add(curr)
+                if k > 1 and starting == curr and len(seen) >= 2:
+                    return True
         return False
     
-trial = Solution()
-o = trial.circularArrayLoop(nums = [1,2,3,4,5])
-print(o)                    
+    def sameSign(self, a, b):
+        if (a > 0 and b > 0) or (a < 0 and b < 0):
+            return True
+        return False
